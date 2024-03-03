@@ -1,0 +1,11 @@
+napelem: melyik irányból süt a nap, 3 LED
+közlekedő / konyha: presence det -> LED felkapcsol
+hw átvétel
+
+jövő hétre:
+wifi / kommunikáció
+
+-----------
+wifi ssid: onlab_smart_home
+wifi pw: rubberduck_soup_#^24
+

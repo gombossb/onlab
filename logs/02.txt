@@ -1,0 +1,5 @@
+kazánház: plexi doboz peltierhez, nyitásérzékelő
+
+jövő hétre:
+- alaprajz
+- funkciók

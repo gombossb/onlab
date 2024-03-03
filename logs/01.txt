@@ -1,0 +1,50 @@
+mit lehet majd belőle továbbvinni?
+házikó vagy tábla, mint a schneideres
+a végére több ilyen is összekötve
+energiatárolás - töltés, energiakivétel
+önálló téma - elgondolkodni rajta, hogy makett vagy fal, milyen funkciók
+végiggondolni, hogy mi kell a hardverekből
+peltier is
+önlab még magyarul, de szakdoga lehet angolul már
+-----------------
+
+kialakítás: falakkal elválasztott helyiségek
+webes vezérelhető felület:
+  - backend: go
+  - frontend: react
+  - esetleges websocket live adatokhoz
+  - futtatás helye: laptopon (rpi?), tp link router mint wifi ap
+arduino/esp
+hardverekből mi kell:
+- Bálintnak nem kellenek belőle
+- arduinot lehet tudok kölcsönözni kszk-ból, de egyébként nodemcu előnyösebb
+- relé, peltier: központi fűtő elem
+- hőmérséklet szenzorok
+- fény szenzorok
+- ventilátorok
+- ...
+helyiségek:
+- nappali
+- hálószoba
+- garázs
+- kazánház
+funkciók:
+- időszimulálás, webről vezérelhetően, állítható sebességgel
+- hőmérséklet kijelzése, fűtés/hűtés
+- lámpák kapcsolása
+- presence detection
+- státusz kijelzése
+
+tervezett ütemterv:
+- alaprajz
+- arduino/nodemcu + tp link környezet összerakás
+- makett alap készítés
+- web backend, frontend
+- mikrokontroller kód írás
+- dokumentálás
+
+további tervek szakdogához:
+- home assistant projekt alapú rendszer kiépítése
+- arduinora kötött elemek, mint moduláris HA komponensek
+- alexa vagy más okos asszisztens integrációja
+- grafana: korábbi hőmérséklet és egyéb forrás adatok gyűjtése grafikonokhoz
