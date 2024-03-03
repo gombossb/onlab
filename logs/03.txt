@@ -9,3 +9,4 @@ wifi / kommunikáció
 wifi ssid: onlab_smart_home
 wifi pw: rubberduck_soup_#^24
 
+7C:9E:BD:F5:1D:74
