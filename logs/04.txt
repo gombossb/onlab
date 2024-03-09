@@ -1,0 +1,2 @@
+a3 méretű doboz?
+nodemcu, backend, frontend összekötés
