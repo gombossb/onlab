@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "smart_home_esp",
+			"path": "smart_home_esp"
+		},
+		{
+			"path": "smart_home_frontend"
+		},
+		{
+			"path": "smart_home_backend"
+		}
+	],
+	"settings": {}
+}
