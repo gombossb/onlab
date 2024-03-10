@@ -1,0 +1,19 @@
+{
+  "name": "smart_home_backend",
+  "version": "0.0.1",
+  "main": "app.ts",
+  "private": true,
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  },
+  "scripts": {
+    "dev": "npx nodemon",
+    "start": "npm run build && node build/index.js"
+  },
+  "dependencies": {
+    "@types/node": "^20.11.25",
+    "ws": "^8.16.0"
+  }
+}
