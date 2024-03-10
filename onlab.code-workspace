@@ -1,17 +1,20 @@
 {
 	"folders": [
 		{
+			"name": "onlab",
 			"path": "."
+		},
+		{
+			"name": "smart_home_backend",
+			"path": "smart_home_backend"
 		},
 		{
 			"name": "smart_home_esp",
 			"path": "smart_home_esp"
 		},
 		{
+			"name": "smart_home_frontend",
 			"path": "smart_home_frontend"
-		},
-		{
-			"path": "smart_home_backend"
 		}
 	],
 	"settings": {}
