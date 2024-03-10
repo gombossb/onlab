@@ -10,7 +10,7 @@ IPAddress gatewayIP(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
 IPAddress nullIP(0, 0, 0, 0);
 
-void init_wifi() {
+void initWifi() {
   WiFi.mode(WIFI_STA);
   WiFi.config(boardIP, gatewayIP, subnet, nullIP, nullIP);
   WiFi.begin(ssid, password);

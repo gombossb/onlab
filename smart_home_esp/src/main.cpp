@@ -1,16 +1,16 @@
 #include <Arduino.h>
-#include "init.h"
 #include "networking.h"
 #include "websocket.h"
 #include "pins.h"
 
 void setup() {
-  initial_setup();
-  init_wifi();
+  Serial.begin(115200);
+  setupPins();
+  initWifi();
   initWebSocket();
 }
 
 void loop() {
   ws.cleanupClients();
-  digitalWrite(ledPin, ledState);
+  // digitalWrite(ledPin, ledState);
 }

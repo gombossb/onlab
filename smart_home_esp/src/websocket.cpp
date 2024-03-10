@@ -1,26 +1,13 @@
 #include <Arduino.h>
 #include <ESPAsyncWebServer.h>
 #include "pins.h"
-#include "webserver.h"
 
 AsyncWebServer server(80);
 AsyncWebSocket ws("/ws");
 
-String processor(const String& var){
-  Serial.println(var);
-  if(var == "STATE"){
-    if (ledState){
-      return "ON";
-    }
-    else{
-      return "OFF";
-    }
-  }
-  return String();
-}
 
 void notifyClients() {
-  ws.textAll(String(ledState));
+  // ws.textAll(String(ledState));
 }
 
 void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
@@ -28,7 +15,7 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
   if (info->final && info->index == 0 && info->len == len && info->opcode == WS_TEXT) {
     data[len] = 0;
     if (strcmp((char*)data, "toggle") == 0) {
-      ledState = !ledState;
+      // ledState = !ledState;
       notifyClients();
     }
   }
@@ -55,9 +42,9 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
 void initWebSocket() {
   ws.onEvent(onEvent);
   server.addHandler(&ws);
-  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send_P(200, "text/html", index_html, processor);
-  });
+  // server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
+  //   request->send_P(200, "text/html", index_html, processor);
+  // });
 
   // Start server
   server.begin();

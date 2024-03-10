@@ -1,1 +1,0 @@
-bool ledState = 0;
