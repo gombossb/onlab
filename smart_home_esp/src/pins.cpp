@@ -7,4 +7,5 @@ int redLedState = 0;
 void setupPins(){
     pinMode(onBoardLedPin, OUTPUT);
     pinMode(redLedPin, OUTPUT);
+    pinMode(tmp1Pin, INPUT);
 }

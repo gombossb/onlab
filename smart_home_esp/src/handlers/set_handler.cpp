@@ -7,6 +7,10 @@ bool setHandler(JsonDocument inputJson, uint32_t clientId){
     // const char *action = inputJson["action"];
     const char *device = inputJson["device"];
     const char *data = inputJson["data"];
+
+    JsonDocument outputJson;
+    outputJson["action"] = "set_resp";
+    outputJson["device"] = device;
     uint8_t outputPin = 0;
 
     if (strcmp(device, "LED_RED") == 0){
@@ -19,11 +23,14 @@ bool setHandler(JsonDocument inputJson, uint32_t clientId){
 
     if (outputPin != 0){
         digitalWrite(outputPin, atoi(data));
+        outputJson["data"] = "ok";
         // Serial.print(outputPin);
         // Serial.print(" set to ");
         // Serial.println(atoi(data));
         
-        ws.text(clientId, "ok");
+        String outputStr;
+        serializeJson(outputJson, outputStr);
+        ws.text(clientId, outputStr);
         return true;
     }
 
