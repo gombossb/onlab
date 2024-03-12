@@ -15,8 +15,11 @@ function App() {
   useWebSocket(WS_URL, {
     onOpen: () => {
       console.log("WebSocket connection established.");
-    }
-  })
+    },
+    shouldReconnect: () => true,
+    reconnectAttempts: 5,
+    reconnectInterval: 3000,
+  });
 
   return (
     <>
