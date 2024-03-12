@@ -1,16 +1,19 @@
 #include <Arduino.h>
-#include "networking.h"
-#include "websocket.h"
+#include "wifi.h"
+#include "mqtt.h"
+// #include "websocket.h"
 #include "pins.h"
 
 void setup() {
   Serial.begin(115200);
   setupPins();
   initWifi();
-  initWebSocket();
+  initMqtt();
+  // initWebSocket();
 }
 
 void loop() {
-  ws.cleanupClients();
+  // ws.cleanupClients();
   // digitalWrite(ledPin, ledState);
+  mqttClient.loop();
 }

@@ -1,8 +1,7 @@
 // https://m1cr0lab-esp32.github.io/remote-control-with-websocket/websocket-and-json/
 // https://randomnerdtutorials.com/esp8266-nodemcu-websocket-server-arduino/
 
-#include <Arduino.h>
-#include <ESPAsyncWebServer.h>
+#include "websocket.h"
 #include <ArduinoJson.h>
 #include "pins.h"
 #include "handlers/get_handler.h"

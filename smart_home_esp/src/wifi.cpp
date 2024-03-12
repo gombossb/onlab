@@ -10,6 +10,8 @@ IPAddress gatewayIP(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
 IPAddress nullIP(0, 0, 0, 0);
 
+WiFiClient wifiClient;
+
 void initWifi() {
   WiFi.mode(WIFI_STA);
   WiFi.config(boardIP, gatewayIP, subnet, nullIP, nullIP);

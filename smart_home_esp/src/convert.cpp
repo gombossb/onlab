@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include "convert.h"
 
 // todo
 float millivoltToCelsius(uint16_t mv){
