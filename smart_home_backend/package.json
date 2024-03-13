@@ -14,7 +14,9 @@
     "start": "npm run build && node build/index.js"
   },
   "dependencies": {
+    "@types/mqtt": "^2.5.0",
     "@types/node": "^20.11.25",
+    "mqtt": "^5.3.6",
     "ws": "^8.16.0"
   }
 }

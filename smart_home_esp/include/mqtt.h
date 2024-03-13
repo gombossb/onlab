@@ -2,3 +2,4 @@
 
 extern PubSubClient mqttClient;
 void initMqtt();
+void mqttReconnect();
