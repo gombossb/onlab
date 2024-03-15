@@ -7,7 +7,9 @@
 
 const char *mqtt_broker = "192.168.1.100";
 const int mqtt_port = 1883;
-const char *topic = "shtime";
+const char *topicReceive = "sh/command";
+const char *topicTransmit = "sh/reply";
+const char *topicStatusUpdate = "sh/statusupdate";
 // const char *mqtt_username = "emqx";
 // const char *mqtt_password = "public";
 
@@ -17,10 +19,6 @@ void initMqtt(){
     mqttClient.setClient(wifiClient);
     mqttClient.setCallback(mqttCallback);
     mqttClient.setServer(mqtt_broker, mqtt_port);
-
-    // TODO
-    mqttClient.publish(topic, "Hi, I'm ESP32 ^^");
-    mqttClient.subscribe(topic);
 }
 
 void mqttReconnect(){
@@ -33,8 +31,11 @@ void mqttReconnect(){
             Serial.print(mqtt_broker);
             Serial.print(":");
             Serial.println(mqtt_port);
+
+            mqttClient.subscribe(topicReceive);
+            mqttClient.publish(topicTransmit, "connected_to_broker");
         } else {
-            Serial.print("failed with state ");
+            Serial.print("MQTT failed with state ");
             Serial.println(mqttClient.state());
             delay(2000);
         }

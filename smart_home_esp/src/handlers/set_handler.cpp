@@ -1,36 +1,27 @@
 #include <Arduino.h>
-#include <ArduinoJson.h>
-#include "websocket.h"
 #include "pins.h"
+#include "handlers/set_handler.h"
 
-bool setHandler(JsonDocument inputJson, uint32_t clientId){
-    // const char *action = inputJson["action"];
-    const char *device = inputJson["device"];
-    const char *data = inputJson["data"];
+String settableDevices[NUM_SETTABLE] = {"LED_RED", "LED_ONBOARD"};
 
-    JsonDocument outputJson;
-    outputJson["action"] = "set_resp";
-    outputJson["device"] = device;
-    uint8_t outputPin = 0;
+bool settableDeviceExists(String device){
+    for (int i=0; i<NUM_SETTABLE; i++)
+        if (settableDevices[i] == device)
+            return true;
 
-    if (strcmp(device, "LED_RED") == 0){
-        redLedState = atoi(data);
-        outputPin = redLedPin;
-    } else if (strcmp(device, "LED_ONBOARD") == 0){
-        onBoardLedState = atoi(data);
-        outputPin = onBoardLedPin;
-    }
+    return false;
+}
 
-    if (outputPin != 0){
-        digitalWrite(outputPin, atoi(data));
-        outputJson["data"] = "ok";
-        // Serial.print(outputPin);
-        // Serial.print(" set to ");
-        // Serial.println(atoi(data));
-        
-        String outputStr;
-        serializeJson(outputJson, outputStr);
-        ws.text(clientId, outputStr);
+bool setHandler(String device, String data){
+    int dataInt = atoi(data.c_str());
+
+    if (device == "LED_RED"){
+        redLedState = dataInt;
+        digitalWrite(redLedPin, dataInt);
+        return true;
+    } else if (device == "LED_ONBOARD"){
+        onBoardLedState = dataInt;
+        digitalWrite(onBoardLedPin, dataInt);
         return true;
     }
 

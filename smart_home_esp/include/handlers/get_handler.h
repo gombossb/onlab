@@ -1,3 +1,7 @@
 #include <ArduinoJson.h>
 
-bool getHandler(JsonDocument inputJson, uint32_t clientId);
+#define NUM_GETTABLE 3
+extern String gettableDevices[];
+
+bool gettableDeviceExists(String device);
+String getHandler(String device);

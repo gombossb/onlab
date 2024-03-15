@@ -1,3 +1,7 @@
 #include <ArduinoJson.h>
 
-bool setHandler(JsonDocument inputJson, uint32_t clientId);
+#define NUM_SETTABLE 2
+extern String settableDevices[];
+
+bool settableDeviceExists(String device);
+bool setHandler(String device, String data);

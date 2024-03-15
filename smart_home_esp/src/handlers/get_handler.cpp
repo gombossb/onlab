@@ -1,41 +1,33 @@
 #include <Arduino.h>
-#include <ArduinoJson.h>
-#include "websocket.h"
 #include "pins.h"
 #include "convert.h"
+#include "handlers/get_handler.h"
 
-bool getHandler(JsonDocument inputJson, uint32_t clientId){
-    // const char *action = inputJson["action"];
-    const char *device = inputJson["device"];
-    // const char *data = inputJson["data"];
+String gettableDevices[NUM_GETTABLE] = {"LED_RED", "LED_ONBOARD", "TMP_1"};
 
-    JsonDocument outputJson;
-    outputJson["action"] = "get_resp";
-    outputJson["device"] = device;
-
-    if (strcmp(device, "LED_RED") == 0){
-        // Serial.print(redLedState);
-        outputJson["data"] = String(redLedState);
-    } else if (strcmp(device, "LED_ONBOARD") == 0){
-        // Serial.print(onBoardLedState);
-        outputJson["data"] = String(onBoardLedState);
-    } else if (strcmp(device, "TMP_1") == 0){
-        // Serial.println(analogRead(tmp1Pin));
-        // TODO fix
-        uint32_t voltage = analogReadMilliVolts(tmp1Pin);
-        float celsius = millivoltToCelsius(voltage);
-        Serial.println(voltage);
-        Serial.println(celsius);
-        Serial.println("--------");
-        outputJson["data"] = String(celsius);
-    }
-
-    if (outputJson.containsKey("data")){
-        String outputStr;
-        serializeJson(outputJson, outputStr);
-        ws.text(clientId, outputStr);
-        return true;
-    }
+bool gettableDeviceExists(String device){
+    for (int i=0; i<NUM_GETTABLE; i++)
+        if (gettableDevices[i] == device)
+            return true;
 
     return false;
+}
+
+String getHandler(String device){
+    String data = "";
+    if (device == "LED_RED"){
+        data = String(redLedState);
+    } else if (device == "LED_ONBOARD"){
+        data = String(onBoardLedState);
+    } else if (device == "TMP_1"){
+        uint32_t voltage = analogReadMilliVolts(tmp1Pin);
+        // TODO fix
+        float celsius = millivoltToCelsius(voltage);
+        // Serial.println(voltage);
+        // Serial.println(celsius);
+        // Serial.println("--------");
+        data = String(celsius);
+    }
+
+    return data;
 }
