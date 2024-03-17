@@ -19,14 +19,14 @@ const initMqttClient = () => {
 
   mqttClient.on('connect', () => {
     console.log(`mqttClient: connected to ${mqttHost}:${mqttPort}`);
-    setInterval(() => {
-      mqttClient.publish("sh/command", JSON.stringify({
-        "action": "SET",
-        "device": "LED_ONBOARD",
-        "data": onboardLed
-      }), {retain:true,qos:2});
-      onboardLed = onboardLed == 0 ? 1 : 0;
-    }, 1000);
+    // setInterval(() => {
+    //   mqttClient.publish("sh/command", JSON.stringify({
+    //     "action": "SET",
+    //     "device": "LED_ONBOARD",
+    //     "data": onboardLed
+    //   }), {retain:true,qos:2});
+    //   onboardLed = onboardLed == 0 ? 1 : 0;
+    // }, 1000);
   });
 
   const topic1 = 'sh/reply'
@@ -38,6 +38,7 @@ const initMqttClient = () => {
 
   mqttClient.on('message', (topic, payload) => {
     console.log('Received Message:', topic, payload.toString())
+    // TODO
   });
 }
 
