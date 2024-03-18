@@ -1,6 +1,7 @@
 
 import { MqttClient, connect } from "mqtt"
-import { mqttHost, mqttPort, mqttClientId } from "./config"
+import { mqttHost, mqttPort, mqttClientId, mqttTopicReply, mqttTopicStatusUpdate } from "./config"
+import { states } from "./states";
 
 let mqttClient: MqttClient;
 
@@ -21,24 +22,26 @@ const initMqttClient = () => {
     console.log(`mqttClient: connected to ${mqttHost}:${mqttPort}`);
     // setInterval(() => {
     //   mqttClient.publish("sh/command", JSON.stringify({
-    //     "action": "SET",
+    //     "action": "GET",
     //     "device": "LED_ONBOARD",
-    //     "data": onboardLed
+    //     // "data": onboardLed
     //   }), {retain:true,qos:2});
     //   onboardLed = onboardLed == 0 ? 1 : 0;
     // }, 1000);
   });
 
-  const topic1 = 'sh/reply'
-  const topic2 = 'sh/statusupdate'
-
-  mqttClient.subscribe([topic1, topic2], () => {
-    console.log(`Subscribe to topic '${topic1} + ${topic2}'`);
+  mqttClient.subscribe([mqttTopicReply, mqttTopicStatusUpdate], () => {
+    console.log(`mqttClient: Subscribing to topic '${mqttTopicReply} + ${mqttTopicStatusUpdate}'`);
   });
 
   mqttClient.on('message', (topic, payload) => {
-    console.log('Received Message:', topic, payload.toString())
-    // TODO
+    // console.log('mqttClient: Received Message:', topic, payload.toString())
+    if (topic === mqttTopicStatusUpdate || topic === mqttTopicReply){
+      const receivedData = JSON.parse(payload.toString());
+      if (receivedData['action'] === 'STATUS_UPDATE'/* || receivedData['action'] === 'GET_RESP'*/){
+        states.deviceStatus[receivedData['device']] = receivedData['data'];
+      }
+    }
   });
 }
 

@@ -33,7 +33,7 @@ void mqttReconnect(){
             Serial.println(mqtt_port);
 
             mqttClient.subscribe(topicReceive);
-            mqttClient.publish(topicTransmit, "connected_to_broker");
+            // mqttClient.publish(topicTransmit, "connected_to_broker");
         } else {
             Serial.print("MQTT failed with state ");
             Serial.println(mqttClient.state());

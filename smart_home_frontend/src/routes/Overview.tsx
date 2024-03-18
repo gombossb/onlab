@@ -27,7 +27,7 @@ const Overview = () => {
   const refresh = () => {
     if (readyState == ReadyState.OPEN){
       sendJsonMessage({
-        "action": "get",
+        "action": "GET",
         "device": "TMP_1"
       });
     }
@@ -36,7 +36,7 @@ const Overview = () => {
   const onboardLedOn = () => {
     if (readyState == ReadyState.OPEN){
       sendJsonMessage({
-        "action": "set",
+        "action": "SET",
         "device": "LED_ONBOARD",
         "data": "1"
       });
@@ -45,7 +45,7 @@ const Overview = () => {
   const onboardLedOff = () => {
     if (readyState == ReadyState.OPEN){
       sendJsonMessage({
-        "action": "set",
+        "action": "SET",
         "device": "LED_ONBOARD",
         "data": "0"
       });
@@ -55,7 +55,7 @@ const Overview = () => {
   const redLedOn = () => {
     if (readyState == ReadyState.OPEN){
       sendJsonMessage({
-        "action": "set",
+        "action": "SET",
         "device": "LED_RED",
         "data": "1"
       });
@@ -64,7 +64,7 @@ const Overview = () => {
   const redLedOff = () => {
     if (readyState == ReadyState.OPEN){
       sendJsonMessage({
-        "action": "set",
+        "action": "SET",
         "device": "LED_RED",
         "data": "0"
       });

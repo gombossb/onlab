@@ -30,15 +30,11 @@ void mqttCallback(char *topic, byte *payload, unsigned int length) {
         outputJson["device"] = device;
         String data = json["data"];
 
-        Serial.println(action);
-        Serial.println(device);
-        Serial.println(data);
         if (action == "SET" && settableDeviceExists(device)){
             bool ret = setHandler(device, data);
             outputJson["action"] = "SET_RESP";
             outputJson["data"] = (ret) ? "OK" : "FAIL";
         } else if (action == "GET" && gettableDeviceExists(device)){
-            Serial.println("GET");
             String data = getHandler(device);
             outputJson["action"] = "GET_RESP";
             outputJson["data"] = (data != "") ? data : "FAIL";

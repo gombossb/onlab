@@ -21,7 +21,7 @@ void loop() {
   mqttClient.loop();
 
   unsigned long now = millis();
-  if (now - lastMsg > 5000) {
+  if (now - lastMsg > 1000) {
     lastMsg = now;
     sendStatusUpdate();
   }
