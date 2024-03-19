@@ -1,7 +1,7 @@
-import { defaultTimeUpdateSpeed } from "./config";
+import { defaultTimeIncrement } from "./config";
 
 const states: any = {
-  'timeSpeed': defaultTimeUpdateSpeed,
+  'timeSpeed': defaultTimeIncrement,
   'deviceStatus': {}
 };
 

@@ -7,10 +7,6 @@ import { initMqttClient } from "./mqtt";
 import { initCounterLoop } from "./time_counter";
 import { initWsServer } from "./ws_server";
 
-
-// todo time simulation
-// getters, setters
-
 initMqttClient();
 initWsServer();
 initCounterLoop();

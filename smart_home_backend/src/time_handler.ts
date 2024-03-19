@@ -3,7 +3,9 @@ import { states } from "./states";
 import { wsServer } from "./ws_server";
 
 const timeHandler = (counter: number) => {
-  if (mqttClient.connected){
+  if (mqttClient.connected && wsServer.clients.size){
+    // TODO call to handling logic eg. auto brightness, blinds
+
     wsServer.clients.forEach(wsC => {
       wsC.send(JSON.stringify({
         'action': 'STATUS_UPDATE',

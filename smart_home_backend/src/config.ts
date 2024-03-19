@@ -1,5 +1,5 @@
-const timeUpdateResolution = 500; // ms
-const defaultTimeUpdateSpeed = 1800;
+const timeUpdateInterval = 100; // ms
+const defaultTimeIncrement = 1800 / 10;
 
 const wsListenIf = "127.0.0.1";
 const wsPort = 8081;
@@ -13,7 +13,7 @@ const mqttTopicStatusUpdate = "sh/statusupdate";
 const mqttTopicCommand = "sh/command";
 
 export {
-  timeUpdateResolution, defaultTimeUpdateSpeed,
+  timeUpdateInterval, defaultTimeIncrement,
   wsListenIf, wsPort,
   mqttHost, mqttPort, mqttClientId,
   mqttTopicReply, mqttTopicStatusUpdate, mqttTopicCommand

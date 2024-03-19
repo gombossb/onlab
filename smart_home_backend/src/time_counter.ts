@@ -1,4 +1,4 @@
-import { timeUpdateResolution } from "./config";
+import { timeUpdateInterval } from "./config";
 import { states } from "./states";
 import { timeHandler } from "./time_handler";
 
@@ -9,7 +9,7 @@ const initCounterLoop = () => {
   counterLoop = setInterval(() => {
     counter = (counter + states.timeSpeed) % 86400;
     timeHandler(counter);
-  }, timeUpdateResolution);
+  }, timeUpdateInterval);
 }
 
 export { counter, initCounterLoop };
