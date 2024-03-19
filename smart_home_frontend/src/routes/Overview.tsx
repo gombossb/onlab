@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 const Overview = () => {
   const [temperature1, setTemperature1] = useState(0);
+  const [time, setTime] = useState('00:00:00');
   const { sendJsonMessage, lastMessage, readyState } = useWebSocket(WS_URL, {
     share: true,
   });
@@ -20,18 +21,19 @@ const Overview = () => {
     if (lastMessage?.data){
       const deserResp = JSON.parse(lastMessage?.data);
       console.log(deserResp)
-      setTemperature1(deserResp?.data);
+      setTime(deserResp?.time);
+      setTemperature1(deserResp?.deviceStatus.TMP_1);
     }
   }, [lastMessage]);
 
-  const refresh = () => {
-    if (readyState == ReadyState.OPEN){
-      sendJsonMessage({
-        "action": "GET",
-        "device": "TMP_1"
-      });
-    }
-  }
+  // const refresh = () => {
+  //   if (readyState == ReadyState.OPEN){
+  //     sendJsonMessage({
+  //       "action": "GET",
+  //       "device": "TMP_1"
+  //     });
+  //   }
+  // }
 
   const onboardLedOn = () => {
     if (readyState == ReadyState.OPEN){
@@ -73,9 +75,10 @@ const Overview = () => {
 
   return (
     <>
-      <div>Overview</div>
-      <button onClick={refresh}>refresh</button>
-      <div>{temperature1}</div>
+      <h1>Overview</h1>
+      <b>{time}</b>
+      {/* <button onClick={refresh}>refresh</button> */}
+      <div>{temperature1} C</div>
       <div>
         <button onClick={onboardLedOn}>onboard led on</button>
         <button onClick={onboardLedOff}>onboard led off</button>
