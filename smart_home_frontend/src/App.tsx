@@ -7,6 +7,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { RouterProvider } from 'react-router-dom';
 import router from './routes';
 import useWebSocket from 'react-use-websocket';
+import { ThemeProvider } from '@mui/material';
+import { darkTheme } from './theme';
 
 export const WS_URL = "ws://127.0.0.1:8081/ws";
 
@@ -22,10 +24,10 @@ function App() {
   });
 
   return (
-    <>
+    <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <RouterProvider router={router} />
-    </>
+    </ThemeProvider>
   )
 }
 
