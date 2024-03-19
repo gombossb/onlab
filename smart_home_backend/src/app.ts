@@ -3,15 +3,10 @@
 // https://khalilstemmler.com/blogs/typescript/node-starter-project/
 // https://yarnpkg.com/package?name=ws
 
-import { initMqttClient, mqttClient } from "./mqtt";
-
-// import { initWsClient, wsClient } from "./client";
-// import { initWsServer } from "./server";
-
-// todo time simulation
-// getters, setters
-
-// initWsServer();
-// initWsClient();
+import { initMqttClient } from "./mqtt";
+import { initCounterLoop } from "./time_counter";
+import { initWsServer } from "./ws_server";
 
 initMqttClient();
+initWsServer();
+initCounterLoop();

@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom"
 import useWebSocket, { ReadyState } from "react-use-websocket";
 import { WS_URL } from "../App";
 import { useEffect, useState } from "react";
+import { MainContainer } from "../components/MainContainer";
+import { Box, Button, Stack } from "@mui/material";
 
 const Overview = () => {
   const [temperature1, setTemperature1] = useState(0);
+  const [time, setTime] = useState('00:00:00');
   const { sendJsonMessage, lastMessage, readyState } = useWebSocket(WS_URL, {
     share: true,
   });
@@ -19,24 +21,25 @@ const Overview = () => {
   useEffect(() => {
     if (lastMessage?.data){
       const deserResp = JSON.parse(lastMessage?.data);
-      console.log(deserResp)
-      setTemperature1(deserResp?.data);
+      // console.log(deserResp)
+      setTime(deserResp?.time);
+      setTemperature1(deserResp?.deviceStatus.TMP_1);
     }
   }, [lastMessage]);
 
-  const refresh = () => {
-    if (readyState == ReadyState.OPEN){
-      sendJsonMessage({
-        "action": "get",
-        "device": "TMP_1"
-      });
-    }
-  }
+  // const refresh = () => {
+  //   if (readyState == ReadyState.OPEN){
+  //     sendJsonMessage({
+  //       "action": "GET",
+  //       "device": "TMP_1"
+  //     });
+  //   }
+  // }
 
   const onboardLedOn = () => {
     if (readyState == ReadyState.OPEN){
       sendJsonMessage({
-        "action": "set",
+        "action": "SET",
         "device": "LED_ONBOARD",
         "data": "1"
       });
@@ -45,7 +48,7 @@ const Overview = () => {
   const onboardLedOff = () => {
     if (readyState == ReadyState.OPEN){
       sendJsonMessage({
-        "action": "set",
+        "action": "SET",
         "device": "LED_ONBOARD",
         "data": "0"
       });
@@ -55,7 +58,7 @@ const Overview = () => {
   const redLedOn = () => {
     if (readyState == ReadyState.OPEN){
       sendJsonMessage({
-        "action": "set",
+        "action": "SET",
         "device": "LED_RED",
         "data": "1"
       });
@@ -64,7 +67,7 @@ const Overview = () => {
   const redLedOff = () => {
     if (readyState == ReadyState.OPEN){
       sendJsonMessage({
-        "action": "set",
+        "action": "SET",
         "device": "LED_RED",
         "data": "0"
       });
@@ -72,23 +75,48 @@ const Overview = () => {
   }
 
   return (
-    <>
-      <div>Overview</div>
-      <button onClick={refresh}>refresh</button>
-      <div>{temperature1}</div>
-      <div>
-        <button onClick={onboardLedOn}>onboard led on</button>
-        <button onClick={onboardLedOff}>onboard led off</button>
-      </div>
-      <div>
-        <button onClick={redLedOn}>led led on</button>
-        <button onClick={redLedOff}>led led off</button>
-      </div>
-      <div>
-        <Link to="/settings">settings</Link>
-      </div>
-    </>
+    <MainContainer>
+      <h1>Overview</h1>
+      <b>{time}</b>
+      <Box>{temperature1} C</Box>
+      <Stack spacing={2}>
+        <Stack
+          direction="row" spacing={2}
+        >
+          <Button
+            variant="contained"
+            onClick={onboardLedOn}
+            >
+              onboard led on
+          </Button>
+          <Button
+            variant="outlined"
+            onClick={onboardLedOff}
+            >
+              onboard led off
+          </Button>
+        </Stack>
+        <Stack
+          direction="row" spacing={2}
+        >
+          <Button
+            variant="contained"
+            onClick={redLedOn}
+            color="error"
+            >
+              red led on
+          </Button>
+          <Button
+            variant="outlined"
+            onClick={redLedOff}
+            color="error"
+            >
+              red led off
+          </Button>
+        </Stack>
+      </Stack>
+    </MainContainer>
   )
 }
 
-export default Overview
+export default Overview;

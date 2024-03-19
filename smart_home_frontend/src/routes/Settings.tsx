@@ -1,7 +1,12 @@
+import { MainContainer } from "../components/MainContainer"
+
 const Settings = () => {
   return (
-    <div>Settings</div>
+    <MainContainer>
+      <h1>Settings</h1>
+      <div>TODO</div>
+    </MainContainer>
   )
 }
 
-export default Settings
+export default Settings;
