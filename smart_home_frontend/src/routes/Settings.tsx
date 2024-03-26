@@ -1,10 +1,14 @@
+import { Box } from "@mui/material";
 import { MainContainer } from "../components/MainContainer"
+import TimeSpeedControl from "../components/TimeSpeedControl";
 
 const Settings = () => {
   return (
     <MainContainer>
       <h1>Settings</h1>
-      <div>TODO</div>
+      <Box>
+        <TimeSpeedControl />
+      </Box>
     </MainContainer>
   )
 }

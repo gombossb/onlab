@@ -1,6 +1,6 @@
 #include <ArduinoJson.h>
 
-#define NUM_SETTABLE 2
+#define NUM_SETTABLE 3
 extern String settableDevices[];
 
 bool settableDeviceExists(String device);

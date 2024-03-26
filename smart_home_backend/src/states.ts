@@ -2,7 +2,9 @@ import { defaultTimeIncrement } from "./config";
 
 const states: any = {
   'timeSpeed': defaultTimeIncrement,
-  'deviceStatus': {}
+  'deviceStatus': {
+    'SERVO_BLINDS': '0'
+  }
 };
 
 export { states };

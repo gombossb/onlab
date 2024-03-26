@@ -5,8 +5,8 @@ import { states } from "./states";
 
 let mqttClient: MqttClient;
 
-let redLed = 0;
-let onboardLed = 1;
+// let redLed = 0;
+// let onboardLed = 1;
 
 const initMqttClient = () => {
   mqttClient = connect(`mqtt://${mqttHost}:${mqttPort}`, {

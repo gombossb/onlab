@@ -2,7 +2,7 @@
 #include "pins.h"
 #include "handlers/set_handler.h"
 
-String settableDevices[NUM_SETTABLE] = {"LED_RED", "LED_ONBOARD"};
+String settableDevices[NUM_SETTABLE] = {"LED_RED", "LED_ONBOARD", "SERVO_BLINDS"};
 
 bool settableDeviceExists(String device){
     for (int i=0; i<NUM_SETTABLE; i++)
@@ -22,6 +22,12 @@ bool setHandler(String device, String data){
     } else if (device == "LED_ONBOARD"){
         onBoardLedState = dataInt;
         digitalWrite(onBoardLedPin, dataInt);
+        return true;
+    } else if (device == "SERVO_BLINDS" && dataInt >= 0 && dataInt <= 180){
+        Serial.print("servo ");
+        Serial.println(dataInt);
+        blindsServo.write(dataInt);
+        blindsState = dataInt;
         return true;
     }
 

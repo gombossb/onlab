@@ -3,7 +3,7 @@
 #include "convert.h"
 #include "handlers/get_handler.h"
 
-String gettableDevices[NUM_GETTABLE] = {"LED_RED", "LED_ONBOARD", "TMP_1"};
+String gettableDevices[NUM_GETTABLE] = {"LED_RED", "LED_ONBOARD", "TMP_1", "SERVO_BLINDS"};
 
 bool gettableDeviceExists(String device){
     for (int i=0; i<NUM_GETTABLE; i++)
@@ -27,6 +27,8 @@ String getHandler(String device){
         // Serial.println(celsius);
         // Serial.println("--------");
         data = String(celsius);
+    } else if (device == "SERVO_BLINDS"){
+        data = String(blindsState);
     }
 
     return data;
