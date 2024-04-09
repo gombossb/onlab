@@ -38,7 +38,8 @@ const timeCountToTime = (count: number) => {
   const minutes = Math.floor((count % 3600) / 60.0);
   const seconds = count % 60;
 
-  return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  // return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:00`;
 }
 
 const hoursToCount = (hour: number, minute: number) =>

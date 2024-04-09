@@ -1,4 +1,4 @@
-const timeUpdateInterval = 200; // ms
+const timeUpdateInterval = 500; // ms
 const defaultTimeIncrement = 1800 / 10;
 
 const wsListenIf = "127.0.0.1";

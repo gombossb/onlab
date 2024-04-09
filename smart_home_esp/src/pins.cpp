@@ -12,6 +12,8 @@ void setupPins(){
     pinMode(onBoardLedPin, OUTPUT);
     pinMode(redLedPin, OUTPUT);
     pinMode(tmp1Pin, INPUT);
+    pinMode(tmp2Pin, INPUT);
+    pinMode(tmp3Pin, INPUT);
     pinMode(blindsPin, OUTPUT);
 
     blindsServo.setPeriodHertz(50);

@@ -1,6 +1,6 @@
 #include <ArduinoJson.h>
 
-#define NUM_GETTABLE 4
+#define NUM_GETTABLE 6
 extern String gettableDevices[];
 
 bool gettableDeviceExists(String device);

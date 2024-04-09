@@ -1,6 +1,7 @@
 import { WebSocketServer } from 'ws';
 import { mqttTopicCommand, wsListenIf, wsPort } from './config';
 import { mqttClient } from './mqtt';
+import { handleWebSocketMessage } from './ws_handler';
 const http = require('http');
 
 const webServer = http.createServer();
@@ -20,15 +21,9 @@ const initWsServer = () => {
 
       if (deserData?.action === "GET" || deserData?.action === "SET"){
         mqttClient.publish(mqttTopicCommand, JSON.stringify(deserData));
+      } else {
+        handleWebSocketMessage(deserData);
       }
-
-      // const deserData = JSON.parse(data.toString());
-      // if (deserData?.action === "get_resp" || deserData?.action === "set_resp"){
-      //   // TODO fix - sends out esp message for all frontend connections
-      //   wsServer.clients.forEach(ws => {
-      //     ws.send(JSON.stringify(deserData));
-      //   })
-      // }
     });
   });
 }
