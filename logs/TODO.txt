@@ -1,0 +1,22 @@
+hardver:
+- 3 helyiség lámpa
+- peltier power, transistor
+- venti transistor
+- photores
+
+esp:
+- device pins, states, handlers
+- port purge
+
+frontend / backend:
+- fix time speed
+- update freq slider
+- blinds start end time slider
+- heating, cooling theory, target temp setting
+- temp measurement averaging
+- manual control override
+
+nice to have:
+- movie mode
+- presence sensor?
+

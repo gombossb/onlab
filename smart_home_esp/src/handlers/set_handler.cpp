@@ -2,7 +2,7 @@
 #include "pins.h"
 #include "handlers/set_handler.h"
 
-String settableDevices[NUM_SETTABLE] = {"LED_RED", "LED_ONBOARD", "SERVO_BLINDS"};
+String settableDevices[NUM_SETTABLE] = {"LED_CAR", "LED_1", "LED_2", "LED_3", "FAN_1", "FAN_2", "HEATING", "SERVO_BLINDS"};
 
 bool settableDeviceExists(String device){
     for (int i=0; i<NUM_SETTABLE; i++)
@@ -15,13 +15,29 @@ bool settableDeviceExists(String device){
 bool setHandler(String device, String data){
     int dataInt = atoi(data.c_str());
 
-    if (device == "LED_RED"){
-        redLedState = dataInt;
-        digitalWrite(redLedPin, dataInt);
+    // if (device == "LED_1"){
+    //     led1State = dataInt;
+    //     digitalWrite(led1Pin, dataInt);
+    //     return true;
+    // } else if (device == "LED_2"){
+    //     led2State = dataInt;
+    //     digitalWrite(led2Pin, dataInt);
+    //     return true;
+    // } else if (device == "LED_3"){
+    //     led3State = dataInt;
+    //     digitalWrite(led3Pin, dataInt);
+    //     return true;
+    /*} else */ if (device == "FAN_1"){
+        fan1State = dataInt;
+        analogWrite(fan1Pin, dataInt);
         return true;
-    } else if (device == "LED_ONBOARD"){
-        onBoardLedState = dataInt;
-        digitalWrite(onBoardLedPin, dataInt);
+    } else if (device == "FAN_2"){
+        fan2State = dataInt;
+        analogWrite(fan2Pin, dataInt);
+        return true;
+    } else if (device == "HEATING"){
+        heatingState = dataInt;
+        analogWrite(heatingPin, dataInt);
         return true;
     } else if (device == "SERVO_BLINDS" && dataInt >= 0 && dataInt <= 180){
         Serial.print("servo ");
