@@ -15,19 +15,23 @@ bool settableDeviceExists(String device){
 bool setHandler(String device, String data){
     int dataInt = atoi(data.c_str());
 
-    // if (device == "LED_1"){
-    //     led1State = dataInt;
-    //     digitalWrite(led1Pin, dataInt);
-    //     return true;
-    // } else if (device == "LED_2"){
-    //     led2State = dataInt;
-    //     digitalWrite(led2Pin, dataInt);
-    //     return true;
-    // } else if (device == "LED_3"){
-    //     led3State = dataInt;
-    //     digitalWrite(led3Pin, dataInt);
-    //     return true;
-    /*} else */ if (device == "FAN_1"){
+    if (device == "LED_CAR"){
+        ledCarState = dataInt;
+        digitalWrite(ledCarPin, dataInt);
+        return true;
+    } else if (device == "LED_1"){
+        led1State = dataInt;
+        digitalWrite(led1Pin, dataInt);
+        return true;
+    } else if (device == "LED_2"){
+        led2State = dataInt;
+        digitalWrite(led2Pin, dataInt);
+        return true;
+    } else if (device == "LED_3"){
+        led3State = dataInt;
+        digitalWrite(led3Pin, dataInt);
+        return true;
+    } else if (device == "FAN_1"){
         fan1State = dataInt;
         analogWrite(fan1Pin, dataInt);
         return true;
