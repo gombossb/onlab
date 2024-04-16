@@ -12,9 +12,13 @@ const mqttTopicReply = "sh/reply";
 const mqttTopicStatusUpdate = "sh/statusupdate";
 const mqttTopicCommand = "sh/command";
 
+const blindsDownDegree = 150;
+const blindsUpDegree = 0;
+
 export {
   timeUpdateInterval, defaultTimeIncrement,
   wsListenIf, wsPort,
   mqttHost, mqttPort, mqttClientId,
-  mqttTopicReply, mqttTopicStatusUpdate, mqttTopicCommand
+  mqttTopicReply, mqttTopicStatusUpdate, mqttTopicCommand,
+  blindsDownDegree, blindsUpDegree
 };

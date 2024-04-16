@@ -16,6 +16,5 @@ export const handleWebSocketMessage = (msg: any) => {
         "Data": states.timeSpeed
       }));
     });
-    console.log("geil")
-  } // TODO set freq
+  }
 }

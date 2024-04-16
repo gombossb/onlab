@@ -19,10 +19,14 @@ Servo blindsServo;
 
 void setupPins(){
     pinMode(ledCarPin, OUTPUT);
+    digitalWrite(ledCarPin, ledCarState);
 
     pinMode(led1Pin, OUTPUT);
+    digitalWrite(led1Pin, led1State);
     pinMode(led2Pin, OUTPUT);
+    digitalWrite(led2Pin, led2State);
     pinMode(led3Pin, OUTPUT);
+    digitalWrite(led3Pin, led3State);
 
     pinMode(tmp1Pin, INPUT);
     pinMode(tmp2Pin, INPUT);
@@ -31,9 +35,12 @@ void setupPins(){
     pinMode(photoResPin, INPUT);
 
     pinMode(fan1Pin, OUTPUT);
+    analogWrite(fan1Pin, fan1State);
     pinMode(fan2Pin, OUTPUT);
+    analogWrite(fan2Pin, fan2State);
 
     pinMode(heatingPin, OUTPUT);
+    analogWrite(heatingPin, heatingState);
 
     pinMode(blindsPin, OUTPUT);
 

@@ -5,9 +5,6 @@ import { states } from "./states";
 
 let mqttClient: MqttClient;
 
-// let redLed = 0;
-// let onboardLed = 1;
-
 const initMqttClient = () => {
   mqttClient = connect(`mqtt://${mqttHost}:${mqttPort}`, {
     clientId: mqttClientId,
@@ -20,14 +17,11 @@ const initMqttClient = () => {
 
   mqttClient.on('connect', () => {
     console.log(`mqttClient: connected to ${mqttHost}:${mqttPort}`);
-    // setInterval(() => {
-    //   mqttClient.publish("sh/command", JSON.stringify({
-    //     "action": "GET",
-    //     "device": "LED_ONBOARD",
-    //     // "data": onboardLed
-    //   }), {retain:true,qos:2});
-    //   onboardLed = onboardLed == 0 ? 1 : 0;
-    // }, 1000);
+    // mqttClient.publish("sh/command", JSON.stringify({
+    //   "action": "SET",
+    //   "device": "FAN_3",
+    //   "data": 4096
+    // }), {retain:true,qos:2});
   });
 
   mqttClient.subscribe([mqttTopicReply, mqttTopicStatusUpdate], () => {
