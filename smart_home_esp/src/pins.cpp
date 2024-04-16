@@ -18,7 +18,7 @@ int blindsState = 0;
 Servo blindsServo;
 
 void setupPins(){
-    pinMode(ledCarState, OUTPUT);
+    pinMode(ledCarPin, OUTPUT);
 
     pinMode(led1Pin, OUTPUT);
     pinMode(led2Pin, OUTPUT);
@@ -27,6 +27,8 @@ void setupPins(){
     pinMode(tmp1Pin, INPUT);
     pinMode(tmp2Pin, INPUT);
     pinMode(tmp3Pin, INPUT);
+
+    pinMode(photoResPin, INPUT);
 
     pinMode(fan1Pin, OUTPUT);
     pinMode(fan2Pin, OUTPUT);

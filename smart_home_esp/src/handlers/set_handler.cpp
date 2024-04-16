@@ -44,10 +44,8 @@ bool setHandler(String device, String data){
         analogWrite(heatingPin, dataInt);
         return true;
     } else if (device == "SERVO_BLINDS" && dataInt >= 0 && dataInt <= 180){
-        Serial.print("servo ");
-        Serial.println(dataInt);
-        blindsServo.write(dataInt);
         blindsState = dataInt;
+        blindsServo.write(dataInt);
         return true;
     }
 
