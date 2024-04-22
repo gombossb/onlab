@@ -11,12 +11,19 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
   // textAlign: 'center',
 }));
 
-export const FanDisplay = ({roomName, percent}: {roomName: string, percent: string}) => {
+export const LedDisplay = ({roomName, value}: {roomName: string, value: string}) => {
   return (
     <DemoPaper square={false} elevation={24}>
       <Stack>
-        <Typography variant='h3'>{roomName}</Typography>
-        <Typography variant='body1'>{percent} %</Typography>
+        <Typography variant='h4'>{roomName} LED</Typography>
+        <Typography
+          variant='body1'
+          style={{
+            color: (value == "1") ? "green" : "red"
+          }}
+        >
+          {(value == "1") ? "ON" : "OFF"}
+        </Typography>
       </Stack>
     </DemoPaper>
   )

@@ -2,10 +2,13 @@ import useWebSocket from "react-use-websocket";
 import { WS_URL } from "../App";
 import { useEffect, useState } from "react";
 import { MainContainer } from "../components/MainContainer";
-import { Box, Button, Stack, Typography } from "@mui/material";
-import { TemperatureDisplay } from "../components/TemperatureDisplay";
-import { FanDisplay } from "../components/FanDisplay";
-import { CarChargingDisplay } from "../components/CarChargingDisplay";
+import { Stack, Typography } from "@mui/material";
+import { TemperatureDisplay } from "../components/displays/TemperatureDisplay";
+import { FanDisplay } from "../components/displays/FanDisplay";
+import { CarChargingDisplay } from "../components/displays/CarChargingDisplay";
+import { HeatingDisplay } from "../components/displays/HeatingDisplay";
+import { BlindsDisplay } from "../components/displays/BlindsDisplay";
+import { LedDisplay } from "../components/displays/LedDisplay";
 
 const Overview = () => {
   const [statusData, setStatusData] = useState<any>(null);
@@ -45,26 +48,17 @@ const Overview = () => {
 
   return (
     <MainContainer>
-      <h1>Overview</h1>
-      <Typography variant="h4">{time}</Typography>
+      <h1>Smart Home Status</h1>
+      <Typography variant="h4" my={2}>{time}</Typography>
       <Stack spacing={2}>
         <Stack
           direction="row"
           justifyContent="flex-start"
           spacing={2}
         >
-          <TemperatureDisplay roomName="Bedroom" temperature={statusData?.status.deviceStatus.TMP_1} />
-          <TemperatureDisplay roomName="Living Room" temperature={statusData?.status.deviceStatus.TMP_2} />
-          <TemperatureDisplay roomName="Main Hall" temperature={statusData?.status.deviceStatus.TMP_3} />
-        </Stack>
-        
-        <Stack
-          direction="row"
-          justifyContent="flex-start"
-          spacing={2}
-        >
-          <FanDisplay roomName="Living Room -> Bedroom" percent={(statusData?.status.deviceStatus.FAN_1 / 4096.0 * 100).toString()} />
-          <FanDisplay roomName="Main Hall -> Living Room" percent={(statusData?.status.deviceStatus.FAN_2 / 4096.0 * 100).toString()} />
+          <TemperatureDisplay roomName="Bedroom" temperature={(statusData?.status.deviceStatus.TMP_1 * 1.0).toFixed(2)} />
+          <TemperatureDisplay roomName="Living Room" temperature={(statusData?.status.deviceStatus.TMP_2 * 1.0).toFixed(2)} />
+          <TemperatureDisplay roomName="Main Hall" temperature={(statusData?.status.deviceStatus.TMP_3 * 1.0).toFixed(2)} />
         </Stack>
 
         <Stack
@@ -72,7 +66,28 @@ const Overview = () => {
           justifyContent="flex-start"
           spacing={2}
         >
-          <CarChargingDisplay percent={100} />
+          <LedDisplay roomName="Bedroom" value={statusData?.status.deviceStatus.LED_1} />
+          <LedDisplay roomName="Living Room" value={statusData?.status.deviceStatus.LED_2} />
+          <LedDisplay roomName="Main Hall" value={statusData?.status.deviceStatus.LED_3} />
+        </Stack>
+        
+        <Stack
+          direction="row"
+          justifyContent="flex-start"
+          spacing={2}
+        >
+          <FanDisplay roomName="Living Room -> Bedroom" value={statusData?.status.deviceStatus.FAN_1 * 1.0} />
+          <FanDisplay roomName="Main Hall -> Living Room" value={statusData?.status.deviceStatus.FAN_2 * 1.0} />
+          <HeatingDisplay percent={(statusData?.status.deviceStatus.HEATING / 4096.0 * 100).toFixed(2).toString()} />
+        </Stack>
+
+        <Stack
+          direction="row"
+          justifyContent="flex-start"
+          spacing={2}
+        >
+          <BlindsDisplay value={(statusData?.status.deviceStatus.SERVO_BLINDS)} />
+          <CarChargingDisplay value={(statusData?.status.deviceStatus.PHOTO_RES)} />
         </Stack>
       </Stack>
 

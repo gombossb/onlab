@@ -22,6 +22,17 @@ const timeHandler = (counter: number) => {
         }));
       }
     }
+
+    // turn on car charging LED if light level over simulated 50 W
+    const toChargeCar = (((states.deviceStatus["PHOTO_RES"] - 100)/12) > 50) ? 1 : 0;
+    if (states.deviceStatus["LED_CAR"] != toChargeCar){
+      mqttClient.publish(mqttTopicCommand, JSON.stringify({
+        "action": "SET",
+        "device": "LED_CAR",
+        "data": `${toChargeCar}`
+      }));
+    }
+
     if (wsServer.clients.size){
       wsServer.clients.forEach(wsC => {
         wsC.send(JSON.stringify({

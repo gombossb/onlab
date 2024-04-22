@@ -11,19 +11,12 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
   // textAlign: 'center',
 }));
 
-export const CarChargingDisplay = ({percent}: {percent: number}) => {
+export const FanDisplay = ({roomName, value}: {roomName: string, value: number}) => {
   return (
     <DemoPaper square={false} elevation={24}>
       <Stack>
-        <Typography variant='h3'>Car Charging</Typography>
-        <Typography
-          variant='body1'
-          style={{
-            color: (percent > 10) ? "green" : "initial"
-          }}
-        >
-          {percent} %
-        </Typography>
+        <Typography variant='h4'>{roomName}</Typography>
+        <Typography variant='body1'>{(value / 4096.0 * 100).toFixed(2).toString()} %</Typography>
       </Stack>
     </DemoPaper>
   )

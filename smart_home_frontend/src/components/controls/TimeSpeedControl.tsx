@@ -4,7 +4,7 @@ import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
-import { WS_URL } from '../App';
+import { WS_URL } from '../../App';
 import { useEffect, useState } from 'react';
 
 const marks = [
@@ -43,13 +43,13 @@ export default function TimeSpeedControl(){
   });
 
   useEffect(() => {
-    if (readyState == ReadyState.OPEN && timeSpeed == undefined)
+    if (readyState == ReadyState.OPEN && (timeSpeed === undefined || timeSpeed === null))
       sendJsonMessage({"action": "GET_SPEED"});
   }, [sendJsonMessage, readyState, timeSpeed]);
 
   useEffect(() => {
     if (readyState == ReadyState.OPEN){
-      if (timeSpeed === undefined && lastMessage?.data){
+      if ((timeSpeed === undefined || timeSpeed === null ) && lastMessage?.data){
         const deserData = JSON.parse(lastMessage?.data);
         if (deserData?.action == "GET_SPEED"){
           setTimeSpeed(Number(deserData.data));
@@ -59,7 +59,7 @@ export default function TimeSpeedControl(){
   }, [timeSpeed, lastMessage, readyState]);
 
   useEffect(() => {
-    if (readyState == ReadyState.OPEN && typeof timeSpeed == "number"){
+    if (readyState == ReadyState.OPEN && typeof timeSpeed == "number" && timeSpeed !== null && timeSpeed !== undefined){
       sendJsonMessage({
         "action": "SET_SPEED",
         "data": timeSpeed

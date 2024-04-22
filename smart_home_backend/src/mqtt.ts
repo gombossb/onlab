@@ -17,11 +17,26 @@ const initMqttClient = () => {
 
   mqttClient.on('connect', () => {
     console.log(`mqttClient: connected to ${mqttHost}:${mqttPort}`);
-    // mqttClient.publish("sh/command", JSON.stringify({
-    //   "action": "SET",
-    //   "device": "FAN_3",
-    //   "data": 4096
-    // }), {retain:true,qos:2});
+    mqttClient.publish("sh/command", JSON.stringify({
+      "action": "SET",
+      "device": "HEATING",
+      "data": 0
+    }));
+    mqttClient.publish("sh/command", JSON.stringify({
+      "action": "SET",
+      "device": "FAN_1",
+      "data": 0
+    }));
+    mqttClient.publish("sh/command", JSON.stringify({
+      "action": "SET",
+      "device": "FAN_2",
+      "data": 0
+    }));
+    mqttClient.publish("sh/command", JSON.stringify({
+      "action": "SET",
+      "device": "LED_3",
+      "data": 1
+    }));
   });
 
   mqttClient.subscribe([mqttTopicReply, mqttTopicStatusUpdate], () => {

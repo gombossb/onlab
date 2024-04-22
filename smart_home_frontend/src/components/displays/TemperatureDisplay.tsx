@@ -15,7 +15,7 @@ export const TemperatureDisplay = ({roomName, temperature}: {roomName: string, t
   return (
     <DemoPaper square={false} elevation={24}>
       <Stack>
-        <Typography variant='h3'>{roomName}</Typography>
+        <Typography variant='h4'>{roomName}</Typography>
         <Typography variant='body1'>{temperature} °C</Typography>
       </Stack>
     </DemoPaper>
