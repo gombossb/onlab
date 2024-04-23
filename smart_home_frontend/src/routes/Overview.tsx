@@ -13,7 +13,7 @@ import { LedDisplay } from "../components/displays/LedDisplay";
 const Overview = () => {
   const [statusData, setStatusData] = useState<any>(null);
   const [time, setTime] = useState('00:00:00');
-  const { sendJsonMessage, lastMessage, readyState } = useWebSocket(WS_URL, {
+  const { /*sendJsonMessage,*/ lastMessage/*, readyState*/ } = useWebSocket(WS_URL, {
     share: true,
   });
 
@@ -26,25 +26,6 @@ const Overview = () => {
       }
     }
   }, [lastMessage]);
-
-  // const onboardLedOn = () => {
-  //   if (readyState == ReadyState.OPEN){
-  //     sendJsonMessage({
-  //       "action": "SET",
-  //       "device": "LED_ONBOARD",
-  //       "data": "1"
-  //     });
-  //   }
-  // }
-  // const onboardLedOff = () => {
-  //   if (readyState == ReadyState.OPEN){
-  //     sendJsonMessage({
-  //       "action": "SET",
-  //       "device": "LED_ONBOARD",
-  //       "data": "0"
-  //     });
-  //   }
-  // }
 
   return (
     <MainContainer>

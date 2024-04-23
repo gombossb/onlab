@@ -3,7 +3,7 @@
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import useWebSocket, { ReadyState } from 'react-use-websocket';
+import useWebSocket from 'react-use-websocket';
 import { WS_URL } from '../../App';
 import { useEffect, useState } from 'react';
 
@@ -34,38 +34,37 @@ function valueLabelFormat(value: number) {
   return marks.findIndex((mark) => mark.value === value) + 1;
 }
 
-export default function TimeSpeedControl(){
-  const [timeSpeed, setTimeSpeed] = useState<number | undefined>(undefined);
-  // const [speedFetched, setSpeedFetched] = useState(false);
+export default function TimeSpeedSetting(){
+  const [timeSpeed, setTimeSpeed] = useState<number>(450);
+  const [timeSpeedFetched, setTimeSpeedFetched] = useState(false);
 
-  const { sendJsonMessage, lastMessage, readyState } = useWebSocket(WS_URL, {
+  const { sendJsonMessage, lastMessage } = useWebSocket(WS_URL, {
     share: true,
   });
 
   useEffect(() => {
-    if (readyState == ReadyState.OPEN && (timeSpeed === undefined || timeSpeed === null))
+    if (!timeSpeedFetched)
       sendJsonMessage({"action": "GET_SPEED"});
-  }, [sendJsonMessage, readyState, timeSpeed]);
+  }, [sendJsonMessage, timeSpeedFetched]);
 
   useEffect(() => {
-    if (readyState == ReadyState.OPEN){
-      if ((timeSpeed === undefined || timeSpeed === null ) && lastMessage?.data){
-        const deserData = JSON.parse(lastMessage?.data);
-        if (deserData?.action == "GET_SPEED"){
-          setTimeSpeed(Number(deserData.data));
-        }
+    if (!timeSpeedFetched && lastMessage?.data){
+      const deserData = JSON.parse(lastMessage?.data);
+      if (deserData?.action == "GET_SPEED"){
+        setTimeSpeed(Number(deserData.data));
+        setTimeSpeedFetched(true);
       }
     }
-  }, [timeSpeed, lastMessage, readyState]);
+  }, [lastMessage, timeSpeedFetched]);
 
   useEffect(() => {
-    if (readyState == ReadyState.OPEN && typeof timeSpeed == "number" && timeSpeed !== null && timeSpeed !== undefined){
+    if (timeSpeedFetched){
       sendJsonMessage({
         "action": "SET_SPEED",
         "data": timeSpeed
       });
     }
-  }, [timeSpeed, sendJsonMessage, readyState])
+  }, [timeSpeed, sendJsonMessage, timeSpeedFetched]);
 
   return (
     <>
@@ -83,7 +82,10 @@ export default function TimeSpeedControl(){
           min={450}
           max={3600}
           value={timeSpeed}
-          onChange={(_, value) => setTimeSpeed(Number(value.toString()))}
+          onChange={(_, value) => {
+            if (typeof value == "number" && value > 10)
+              setTimeSpeed(value);
+          }}
         />
       </Box>
     </>

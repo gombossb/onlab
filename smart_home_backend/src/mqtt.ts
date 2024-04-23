@@ -2,6 +2,7 @@
 import { MqttClient, connect } from "mqtt"
 import { mqttHost, mqttPort, mqttClientId, mqttTopicReply, mqttTopicStatusUpdate } from "./config"
 import { states } from "./states";
+import { wsServer } from "./ws_server";
 
 let mqttClient: MqttClient;
 
@@ -32,11 +33,11 @@ const initMqttClient = () => {
       "device": "FAN_2",
       "data": 0
     }));
-    mqttClient.publish("sh/command", JSON.stringify({
-      "action": "SET",
-      "device": "LED_3",
-      "data": 1
-    }));
+    // mqttClient.publish("sh/command", JSON.stringify({
+    //   "action": "SET",
+    //   "device": "LED_3",
+    //   "data": 1
+    // }));
   });
 
   mqttClient.subscribe([mqttTopicReply, mqttTopicStatusUpdate], () => {
@@ -47,8 +48,12 @@ const initMqttClient = () => {
     // console.log('mqttClient: Received Message:', topic, payload.toString())
     if (topic === mqttTopicStatusUpdate || topic === mqttTopicReply){
       const receivedData = JSON.parse(payload.toString());
-      if (receivedData['action'] === 'STATUS_UPDATE'/* || receivedData['action'] === 'GET_RESP'*/){
+      if (receivedData['action'] === 'STATUS_UPDATE'){
         states.deviceStatus[receivedData['device']] = receivedData['data'];
+      } else if (receivedData['action'] === 'GET_RESP' || receivedData['action'] === 'SET_RESP'){
+        wsServer.clients.forEach(c => {
+          c.send(payload.toString());
+        })
       }
     }
   });

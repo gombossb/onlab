@@ -1,5 +1,5 @@
 const timeUpdateInterval = 500; // ms
-const defaultTimeIncrement = 1800 / 10;
+const defaultTimeIncrement = 450;
 
 const wsListenIf = "127.0.0.1";
 const wsPort = 8081;

@@ -13,7 +13,7 @@ export const handleWebSocketMessage = (msg: any) => {
     wsServer.clients.forEach(c => {
       c.send(JSON.stringify({
         "action": "GET_SPEED",
-        "Data": states.timeSpeed
+        "data": states.timeSpeed
       }));
     });
   }

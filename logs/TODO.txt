@@ -1,6 +1,3 @@
-hardver:
-- 3 helyiség lámpa
-
 frontend / backend:
 - fix time speed
 - blinds start end time slider
@@ -15,6 +12,7 @@ nice to have:
 
 DONE:
 hardver:
+- 3 helyiség lámpa
 - peltier power, transistor
 - venti transistor
 - photores
