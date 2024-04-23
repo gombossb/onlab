@@ -16,5 +16,31 @@ export const handleWebSocketMessage = (msg: any) => {
         "data": states.timeSpeed
       }));
     });
+  } else if (msg?.action === "GET_ROLLUP"){
+    wsServer.clients.forEach(c => {
+      c.send(JSON.stringify({
+        "action": "GET_ROLLUP",
+        "data": states.blindsUpTime
+      }));
+    });
+  } else if (msg?.action === "SET_ROLLUP"){
+    const h = Number(msg.data);
+    if (h > 3 && h <= 12)
+      states.blindsUpTime = h;
+
+    console.log(states);
+  } else if (msg?.action === "GET_ROLLDOWN"){
+    wsServer.clients.forEach(c => {
+      c.send(JSON.stringify({
+        "action": "GET_ROLLDOWN",
+        "data": states.blindsDownTime
+      }));
+    });
+  } else if (msg?.action === "SET_ROLLDOWN"){
+    const h = Number(msg.data);
+    if (h > 14 && h <= 22)
+      states.blindsDownTime = h;
+
+    console.log(states);
   }
 }

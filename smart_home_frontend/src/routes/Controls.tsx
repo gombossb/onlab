@@ -1,29 +1,18 @@
 import { MainContainer } from "../components/MainContainer";
-import { Stack } from "@mui/material";
+import { Box } from "@mui/material";
+import BlindsAutoManualControl from "../components/controls/BlindsAutoManualControl";
+import LedControl from "../components/controls/LedControl";
 
 const Controls = () => {
-  
-
-  
-
   return (
     <MainContainer>
       <h1>Controls</h1>
-      <Stack spacing={2}>
-        <Stack
-          direction="row"
-          justifyContent="flex-start"
-          spacing={2}
-        >
-          {/*todo 
-            blinds manual override
-            led 1-3
-            fan 1-2
-            heating target temp
-            heating manual override
-          */}
-        </Stack>
-      </Stack>
+      <Box>
+        <BlindsAutoManualControl />
+        <LedControl roomName="Bedroom" ledId={1} />
+        <LedControl roomName="Living Room" ledId={2} />
+        <LedControl roomName="Main Hall" ledId={3} />
+      </Box>
     </MainContainer>
   )
 }
