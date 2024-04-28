@@ -19,8 +19,12 @@ function App() {
       console.log("WebSocket connection established.");
     },
     shouldReconnect: () => true,
-    reconnectAttempts: 200,
-    reconnectInterval: 3000,
+    reconnectAttempts: 40,
+    reconnectInterval: 1000,
+    heartbeat: {
+      timeout: 5000,
+      interval: 2000,
+    }
   });
 
   return (

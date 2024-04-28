@@ -16,6 +16,9 @@ const initWsServer = () => {
     ws.on('error', console.error);
 
     ws.on('message', (data: any) => {
+      if (data == "ping")
+        return;
+      
       console.log(`wsServer: received from client: ${data}`);
       const deserData = JSON.parse(data);
 

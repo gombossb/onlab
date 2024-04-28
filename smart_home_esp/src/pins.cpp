@@ -18,8 +18,10 @@ int blindsState = 0;
 Servo blindsServo;
 
 void setupPins(){
+    ledcSetup(10, 5000, 8);
     pinMode(ledCarPin, OUTPUT);
-    analogWrite(ledCarPin, ledCarState);
+    ledcAttachPin(ledCarPin, 10);
+    // analogWrite(ledCarPin, ledCarState);
 
     pinMode(led1Pin, OUTPUT);
     digitalWrite(led1Pin, led1State);

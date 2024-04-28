@@ -50,11 +50,7 @@ const timeHandler = (counter: number) => {
     // turn on car charging LED if light level over simulated 50 W
     const carCharging = states.deviceStatus["PHOTO_RES"];
     const toChargeCar = (((states.deviceStatus["PHOTO_RES"] - 100)/12) > 50) ? 1 : 0;
-    mqttClient.publish(mqttTopicCommand, JSON.stringify({
-      "action": "SET",
-      "device": "LED_CAR",
-      "data": `${toChargeCar ? carCharging : 0}`
-    }));
+    onlyDiffPublish("LED_CAR", toChargeCar ? carCharging : 0);
 
     if (wsServer.clients.size){
       wsServer.clients.forEach(wsC => {
