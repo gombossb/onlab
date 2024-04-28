@@ -1,9 +1,5 @@
 frontend / backend:
-- fix time speed
-- blinds start end time slider
 - heating, cooling theory, target temp setting
-- temp measurement averaging
-- manual control override
 
 nice to have:
 - update freq slider
@@ -11,11 +7,15 @@ nice to have:
 - presence sensor?
 
 DONE:
+frontent / backend:
+- temp measurement averaging
+
 hardver:
 - 3 helyiség lámpa
 - peltier power, transistor
 - venti transistor
 - photores
+
 esp:
 - device pins, states, handlers
 - port purge

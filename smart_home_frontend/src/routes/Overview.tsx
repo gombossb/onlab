@@ -30,16 +30,16 @@ const Overview = () => {
   return (
     <MainContainer>
       <h1>Smart Home Status</h1>
-      <Typography variant="h4" my={2}>{time}</Typography>
+      <Typography variant="h4" my={2}>Time: {time}</Typography>
       <Stack spacing={2}>
         <Stack
           direction="row"
           justifyContent="flex-start"
           spacing={2}
         >
-          <TemperatureDisplay roomName="Bedroom" temperature={(statusData?.status.deviceStatus.TMP_1 * 1.0).toFixed(2)} />
-          <TemperatureDisplay roomName="Living Room" temperature={(statusData?.status.deviceStatus.TMP_2 * 1.0).toFixed(2)} />
-          <TemperatureDisplay roomName="Main Hall" temperature={(statusData?.status.deviceStatus.TMP_3 * 1.0).toFixed(2)} />
+          <TemperatureDisplay roomName="Bedroom" temperature={(statusData?.status.deviceStatus.TMP_1 * 1.0).toFixed(1)} />
+          <TemperatureDisplay roomName="Living Room" temperature={(statusData?.status.deviceStatus.TMP_2 * 1.0).toFixed(1)} />
+          <TemperatureDisplay roomName="Main Hall" temperature={(statusData?.status.deviceStatus.TMP_3 * 1.0).toFixed(1)} />
         </Stack>
 
         <Stack
@@ -59,7 +59,7 @@ const Overview = () => {
         >
           <FanDisplay roomName="Living Room -> Bedroom" value={statusData?.status.deviceStatus.FAN_1 * 1.0} />
           <FanDisplay roomName="Main Hall -> Living Room" value={statusData?.status.deviceStatus.FAN_2 * 1.0} />
-          <HeatingDisplay percent={(statusData?.status.deviceStatus.HEATING / 4096.0 * 100).toFixed(2).toString()} />
+          <HeatingDisplay value={statusData?.status.deviceStatus.HEATING * 1.0} />
         </Stack>
 
         <Stack

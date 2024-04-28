@@ -5,7 +5,7 @@ import useWebSocket from 'react-use-websocket';
 import { WS_URL } from '../../App';
 import { useEffect, useState } from 'react';
 
-export default function BlindsAutoManualControl(){
+export default function BlindsAutoManualSetting(){
   const [autoBlinds, setAutoBlinds] = useState(true);
   const [autoBlindsFetched, setAutoBlindsFetched] = useState(false);
 
@@ -49,27 +49,5 @@ export default function BlindsAutoManualControl(){
         label="Auto Blinds"
       />
     </FormGroup>
-    // <>
-    //   <Typography variant="h6">
-    //     Auto rolldown time:
-    //   </Typography>
-    //   <Box sx={{ width: 300 }}>
-    //     <Slider
-    //       aria-label="Restricted values"
-    //       // defaultValue={900}
-    //       valueLabelFormat={valueLabelFormat}
-    //       step={null}
-    //       // valueLabelDisplay="on"
-    //       marks={marks}
-    //       min={15}
-    //       max={22}
-    //       value={autoBlinds}
-    //       onChange={(_, value) => {
-    //         if (typeof value == "number" && value > 14)
-    //           setAutoBlinds(value);
-    //       }}
-    //     />
-    //   </Box>
-    // </>
   );
 }

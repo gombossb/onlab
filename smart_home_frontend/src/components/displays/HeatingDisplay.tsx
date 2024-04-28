@@ -8,12 +8,12 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
 }));
 
-export const HeatingDisplay = ({percent}: {percent: string}) => {
+export const HeatingDisplay = ({value}: {value: number}) => {
   return (
     <DemoPaper square={false} elevation={24}>
       <Stack>
         <Typography variant='h4'>Heating</Typography>
-        <Typography variant='body1'>{percent} %</Typography>
+        <Typography variant='body1'>{(value / 4095.0 * 100).toFixed(1).toString()} %</Typography>
       </Stack>
     </DemoPaper>
   )

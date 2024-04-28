@@ -14,27 +14,27 @@ const marks = [
   },
   {
     value: 16,
-    label: '',
+    label: '16h',
   },
   {
     value: 17,
-    label: '',
+    label: '17h',
   },
   {
     value: 18,
-    label: '',
+    label: '18h',
   },
   {
     value: 19,
-    label: '',
+    label: 'l9h',
   },
   {
     value: 20,
-    label: '',
+    label: '20h',
   },
   {
     value: 21,
-    label: '',
+    label: '21h',
   },
   {
     value: 22,

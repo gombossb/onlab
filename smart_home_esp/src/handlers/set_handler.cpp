@@ -17,7 +17,7 @@ bool setHandler(String device, String data){
 
     if (device == "LED_CAR"){
         ledCarState = dataInt;
-        digitalWrite(ledCarPin, dataInt);
+        analogWrite(ledCarPin, dataInt);
         return true;
     } else if (device == "LED_1"){
         led1State = dataInt;

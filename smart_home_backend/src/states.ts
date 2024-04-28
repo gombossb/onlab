@@ -6,9 +6,12 @@ const states: any = {
   'deviceStatus': {
     'SERVO_BLINDS': `${blindsDownDegree}`
   },
-  'autoBlinds': true, // TODO
+  'autoBlinds': true,
   'blindsUpTime': 7,
-  'blindsDownTime': 18
+  'blindsDownTime': 18,
+  'autoTempControl': true,
+  'targetTemp': 22,
+  'temps': [[], [], []],
 };
 
 export { states };

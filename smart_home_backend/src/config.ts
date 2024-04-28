@@ -15,10 +15,15 @@ const mqttTopicCommand = "sh/command";
 const blindsDownDegree = 150;
 const blindsUpDegree = 0;
 
+const tempEpsilon = 1.0;
+const fanMaxValue = 4095;
+const peltierMaxValue = 2048;
+
 export {
   timeUpdateInterval, defaultTimeIncrement,
   wsListenIf, wsPort,
   mqttHost, mqttPort, mqttClientId,
   mqttTopicReply, mqttTopicStatusUpdate, mqttTopicCommand,
-  blindsDownDegree, blindsUpDegree
+  blindsDownDegree, blindsUpDegree,
+  tempEpsilon, fanMaxValue, peltierMaxValue
 };

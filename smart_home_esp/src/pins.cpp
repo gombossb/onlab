@@ -19,7 +19,7 @@ Servo blindsServo;
 
 void setupPins(){
     pinMode(ledCarPin, OUTPUT);
-    digitalWrite(ledCarPin, ledCarState);
+    analogWrite(ledCarPin, ledCarState);
 
     pinMode(led1Pin, OUTPUT);
     digitalWrite(led1Pin, led1State);
