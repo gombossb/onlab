@@ -1,5 +1,5 @@
-frontend / backend:
-- heating, cooling theory, target temp setting
+hardver:
+- peltier power, transistor
 
 nice to have:
 - update freq slider
@@ -9,10 +9,10 @@ nice to have:
 DONE:
 frontent / backend:
 - temp measurement averaging
+- heating, cooling theory, target temp setting
 
 hardver:
 - 3 helyiség lámpa
-- peltier power, transistor
 - venti transistor
 - photores
 

@@ -70,7 +70,7 @@ const ManualHeatingControl = () => {
           step={100}
           // marks
           min={0}
-          max={2048}
+          max={4095}
           value={heatingValue}
           onChange={(_, value) => {
             if (typeof value == "number" && value >= 0 && value <= 4095)
