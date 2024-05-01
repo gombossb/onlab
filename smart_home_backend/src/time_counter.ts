@@ -12,4 +12,4 @@ const initCounterLoop = () => {
   }, timeUpdateInterval);
 }
 
-export { counter, initCounterLoop };
+export { counter, initCounterLoop, counterLoop };

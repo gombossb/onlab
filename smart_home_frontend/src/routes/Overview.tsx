@@ -1,120 +1,77 @@
-import useWebSocket, { ReadyState } from "react-use-websocket";
+import useWebSocket from "react-use-websocket";
 import { WS_URL } from "../App";
 import { useEffect, useState } from "react";
 import { MainContainer } from "../components/MainContainer";
-import { Box, Button, Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
+import { TemperatureDisplay } from "../components/displays/TemperatureDisplay";
+import { FanDisplay } from "../components/displays/FanDisplay";
+import { CarChargingDisplay } from "../components/displays/CarChargingDisplay";
+import { HeatingDisplay } from "../components/displays/HeatingDisplay";
+import { BlindsDisplay } from "../components/displays/BlindsDisplay";
+import { LedDisplay } from "../components/displays/LedDisplay";
 
 const Overview = () => {
-  const [temperature1, setTemperature1] = useState(0);
+  const [statusData, setStatusData] = useState<any>(null);
   const [time, setTime] = useState('00:00:00');
-  const { sendJsonMessage, lastMessage, readyState } = useWebSocket(WS_URL, {
+  const { /*sendJsonMessage,*/ lastMessage/*, readyState*/ } = useWebSocket(WS_URL, {
     share: true,
   });
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-      
-  //   }, 1000);
-  //   clearInterval(interval);
-  // }, []);
 
   useEffect(() => {
     if (lastMessage?.data){
       const deserResp = JSON.parse(lastMessage?.data);
-      // console.log(deserResp)
-      setTime(deserResp?.time);
-      setTemperature1(deserResp?.deviceStatus.TMP_1);
+      if (deserResp?.action == "STATUS_UPDATE"){
+        setTime(deserResp?.time);
+        setStatusData(deserResp);
+      }
     }
   }, [lastMessage]);
 
-  // const refresh = () => {
-  //   if (readyState == ReadyState.OPEN){
-  //     sendJsonMessage({
-  //       "action": "GET",
-  //       "device": "TMP_1"
-  //     });
-  //   }
-  // }
-
-  const onboardLedOn = () => {
-    if (readyState == ReadyState.OPEN){
-      sendJsonMessage({
-        "action": "SET",
-        "device": "LED_ONBOARD",
-        "data": "1"
-      });
-    }
-  }
-  const onboardLedOff = () => {
-    if (readyState == ReadyState.OPEN){
-      sendJsonMessage({
-        "action": "SET",
-        "device": "LED_ONBOARD",
-        "data": "0"
-      });
-    }
-  }
-
-  const redLedOn = () => {
-    if (readyState == ReadyState.OPEN){
-      sendJsonMessage({
-        "action": "SET",
-        "device": "LED_RED",
-        "data": "1"
-      });
-    }
-  }
-  const redLedOff = () => {
-    if (readyState == ReadyState.OPEN){
-      sendJsonMessage({
-        "action": "SET",
-        "device": "LED_RED",
-        "data": "0"
-      });
-    }
-  }
-
   return (
     <MainContainer>
-      <h1>Overview</h1>
-      <b>{time}</b>
-      <Box>{temperature1} C</Box>
+      <h1>Smart Home Status</h1>
+      <Typography variant="h4" my={2}>Time: {time}</Typography>
       <Stack spacing={2}>
         <Stack
-          direction="row" spacing={2}
+          direction="row"
+          justifyContent="flex-start"
+          spacing={2}
         >
-          <Button
-            variant="contained"
-            onClick={onboardLedOn}
-            >
-              onboard led on
-          </Button>
-          <Button
-            variant="outlined"
-            onClick={onboardLedOff}
-            >
-              onboard led off
-          </Button>
+          <TemperatureDisplay roomName="Bedroom" temperature={(statusData?.status.deviceStatus.TMP_1 * 1.0).toFixed(1)} />
+          <TemperatureDisplay roomName="Living Room" temperature={(statusData?.status.deviceStatus.TMP_2 * 1.0).toFixed(1)} />
+          <TemperatureDisplay roomName="Main Hall" temperature={(statusData?.status.deviceStatus.TMP_3 * 1.0).toFixed(1)} />
         </Stack>
+
         <Stack
-          direction="row" spacing={2}
+          direction="row"
+          justifyContent="flex-start"
+          spacing={2}
         >
-          <Button
-            variant="contained"
-            onClick={redLedOn}
-            color="error"
-            >
-              red led on
-          </Button>
-          <Button
-            variant="outlined"
-            onClick={redLedOff}
-            color="error"
-            >
-              red led off
-          </Button>
+          <LedDisplay roomName="Bedroom" value={statusData?.status.deviceStatus.LED_1} />
+          <LedDisplay roomName="Living Room" value={statusData?.status.deviceStatus.LED_2} />
+          <LedDisplay roomName="Main Hall" value={statusData?.status.deviceStatus.LED_3} />
+        </Stack>
+        
+        <Stack
+          direction="row"
+          justifyContent="flex-start"
+          spacing={2}
+        >
+          <FanDisplay roomName="Living Room -> Bedroom" value={statusData?.status.deviceStatus.FAN_1 * 1.0} />
+          <FanDisplay roomName="Main Hall -> Living Room" value={statusData?.status.deviceStatus.FAN_2 * 1.0} />
+          <HeatingDisplay value={statusData?.status.deviceStatus.HEATING * 1.0} />
+        </Stack>
+
+        <Stack
+          direction="row"
+          justifyContent="flex-start"
+          spacing={2}
+        >
+          <BlindsDisplay value={(statusData?.status.deviceStatus.SERVO_BLINDS)} />
+          <CarChargingDisplay value={(statusData?.status.deviceStatus.PHOTO_RES)} />
         </Stack>
       </Stack>
+
     </MainContainer>
   )
 }

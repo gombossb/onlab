@@ -1,8 +1,17 @@
-import { defaultTimeIncrement } from "./config";
+import { defaultTimeIncrement, blindsDownDegree } from "./config";
 
 const states: any = {
   'timeSpeed': defaultTimeIncrement,
-  'deviceStatus': {}
+  // 'updateFrequency': timeUpdateInterval,
+  'deviceStatus': {
+    'SERVO_BLINDS': `${blindsDownDegree}`
+  },
+  'autoBlinds': true,
+  'blindsUpTime': 7,
+  'blindsDownTime': 18,
+  'autoTempControl': true,
+  'targetTemp': 22,
+  'temps': [[], [], []],
 };
 
 export { states };

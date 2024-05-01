@@ -1,4 +1,4 @@
-import { Container } from "@mui/material"
+import { Box, Container } from "@mui/material"
 import { ReactNode } from "react"
 import TopBar from "./TopBar"
 
@@ -7,7 +7,9 @@ export const MainContainer = ({ children }: { children: ReactNode}) => {
     <>
       <TopBar />
       <Container fixed>
-        { children }
+        <Box mb={4}>
+          { children }
+        </Box>
       </Container>
     </>
   )

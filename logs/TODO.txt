@@ -1,0 +1,21 @@
+hardver:
+- peltier power, transistor
+
+nice to have:
+- update freq slider
+- movie mode
+- presence sensor?
+
+DONE:
+frontent / backend:
+- temp measurement averaging
+- heating, cooling theory, target temp setting
+
+hardver:
+- 3 helyiség lámpa
+- venti transistor
+- photores
+
+esp:
+- device pins, states, handlers
+- port purge

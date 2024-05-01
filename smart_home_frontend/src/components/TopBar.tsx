@@ -17,6 +17,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 const pages = [
   { 'display': 'Overview', 'url': '/'},
+  { 'display': 'Controls', 'url': '/controls'},
   { 'display': 'Settings', 'url': '/settings'},
 ];
 

@@ -12,6 +12,5 @@ void sendStatusUpdate(){
         String outputStr;
         serializeJson(outputJson, outputStr);
         mqttClient.publish(topicStatusUpdate, outputStr.c_str());
-        // delay?
     }
 }
