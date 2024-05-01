@@ -1,10 +1,10 @@
 const timeUpdateInterval = 500; // ms
 const defaultTimeIncrement = 450;
 
-const wsListenIf = "127.0.0.1";
-const wsPort = 8081;
+const wsListenIf = process.env.SH_WS_LISTENIF;
+const wsPort = process.env.SH_BACKEND_PORT;
 
-const mqttHost = "192.168.1.100";
+const mqttHost = process.env.SH_MQTT_SERVER;
 const mqttPort = 1883;
 const mqttClientId = `sh_backend_${Math.random().toString(16).slice(3)}`;
 

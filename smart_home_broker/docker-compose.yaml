@@ -8,7 +8,7 @@ services:
     container_name: smart_home_mosquitto
     restart: unless-stopped
     ports:
-      - "192.168.1.100:1883:1883"
+      - "${SH_IP}:1883:1883"
       # - "127.0.0.1:9001:9001"
     volumes:
       - ./mosquitto_data:/mosquitto/data
