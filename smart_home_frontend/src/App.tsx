@@ -10,7 +10,7 @@ import useWebSocket from 'react-use-websocket';
 import { ThemeProvider } from '@mui/material';
 import { darkTheme } from './theme';
 
-export const WS_URL = "ws://127.0.0.1:8081/ws";
+export const WS_URL = `ws://${import.meta.env.VITE_SH_WS_SERVER}/ws`;
 
 function App() {
   // https://blog.logrocket.com/websocket-tutorial-real-time-node-react/
