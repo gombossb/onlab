@@ -17,7 +17,7 @@ const blindsUpDegree = 0;
 
 const tempEpsilon = 1.0;
 const fanMaxValue = 4095;
-const peltierMaxValue = 2048;
+const peltierMaxValue = 4095;
 
 export {
   timeUpdateInterval, defaultTimeIncrement,
