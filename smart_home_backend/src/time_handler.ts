@@ -35,8 +35,8 @@ const timeHandler = (counter: number) => {
 
       // heating
       } else if ((average - states.targetTemp) < (-1.0 * tempEpsilon)){
-        onlyDiffPublish("FAN_1", 0);
-        onlyDiffPublish("FAN_2", 0);
+        onlyDiffPublish("FAN_1", Math.floor(0.25 * fanMaxValue));
+        onlyDiffPublish("FAN_2", Math.floor(0.25 * fanMaxValue));
         onlyDiffPublish("HEATING", peltierMaxValue);
         
       // no heating, cooling
