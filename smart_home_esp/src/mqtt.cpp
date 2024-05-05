@@ -5,7 +5,7 @@
 #include "mqtt.h"
 #include "handlers/mqtt_callback.h"
 
-const char *mqtt_broker = "192.168.1.100";
+const char *mqtt_broker = "192.168.1.101";
 const int mqtt_port = 1883;
 const char *topicReceive = "sh/command";
 const char *topicTransmit = "sh/reply";

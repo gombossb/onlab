@@ -10,7 +10,7 @@ const states: any = {
   'blindsUpTime': 7,
   'blindsDownTime': 18,
   'autoTempControl': true,
-  'targetTemp': 22,
+  'targetTemp': 21,
   'temps': [[], [], []],
 };
 
