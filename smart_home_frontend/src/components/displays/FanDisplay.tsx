@@ -12,7 +12,7 @@ export const FanDisplay = ({roomName, value}: {roomName: string, value: number})
   return (
     <DemoPaper square={false} elevation={24}>
       <Stack>
-        <Typography variant='h4'>{roomName}</Typography>
+        <Typography variant='h4'>{roomName} Fan</Typography>
         <Typography variant='body1'>{(value / 4095.0 * 100).toFixed(1).toString()} %</Typography>
       </Stack>
     </DemoPaper>

@@ -80,11 +80,12 @@ function TopBar() {
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
+                color: 'white',
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={page.display} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" component={RouterLink} to={page.url}>{page.display}</Typography>
+                  <Typography textAlign="center" sx={{ color: 'white', textDecoration: 'none' }} component={RouterLink} to={page.url}>{page.display}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -100,7 +101,7 @@ function TopBar() {
               flexGrow: 1,
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'white',
               textDecoration: 'none',
             }}
           >

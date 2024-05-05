@@ -31,11 +31,13 @@ const Overview = () => {
     <MainContainer>
       <h1>Smart Home Status</h1>
       <Typography variant="h4" my={2}>Time: {time}</Typography>
-      <Stack spacing={2}>
+      <Stack spacing={2} useFlexGap>
         <Stack
           direction="row"
           justifyContent="flex-start"
           spacing={2}
+          useFlexGap
+          flexWrap="wrap"
         >
           <TemperatureDisplay roomName="Bedroom" temperature={(statusData?.status.deviceStatus.TMP_1 * 1.0).toFixed(1)} />
           <TemperatureDisplay roomName="Living Room" temperature={(statusData?.status.deviceStatus.TMP_2 * 1.0).toFixed(1)} />
@@ -46,6 +48,8 @@ const Overview = () => {
           direction="row"
           justifyContent="flex-start"
           spacing={2}
+          useFlexGap
+          flexWrap="wrap"
         >
           <LedDisplay roomName="Bedroom" value={statusData?.status.deviceStatus.LED_1} />
           <LedDisplay roomName="Living Room" value={statusData?.status.deviceStatus.LED_2} />
@@ -56,6 +60,8 @@ const Overview = () => {
           direction="row"
           justifyContent="flex-start"
           spacing={2}
+          useFlexGap
+          flexWrap="wrap"
         >
           <FanDisplay roomName="Living Room -> Bedroom" value={statusData?.status.deviceStatus.FAN_1 * 1.0} />
           <FanDisplay roomName="Main Hall -> Living Room" value={statusData?.status.deviceStatus.FAN_2 * 1.0} />
@@ -66,6 +72,8 @@ const Overview = () => {
           direction="row"
           justifyContent="flex-start"
           spacing={2}
+          useFlexGap
+          flexWrap="wrap"
         >
           <BlindsDisplay value={(statusData?.status.deviceStatus.SERVO_BLINDS)} />
           <CarChargingDisplay value={(statusData?.status.deviceStatus.PHOTO_RES)} />
